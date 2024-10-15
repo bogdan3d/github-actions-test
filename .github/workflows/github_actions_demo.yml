@@ -16,7 +16,7 @@ jobs:
           echo " - runner.os: ${{ runner.os }}"
           echo " - github.ref: ${{ github.ref }}"
           echo " - github.repository: ${{ github.repository }}"
-          echo " - github.ref with replacement: ${{ env.modified_ref }}"
+          echo " - modified_ref: ${{ env.modified_ref }}"
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
