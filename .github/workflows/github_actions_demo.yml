@@ -9,7 +9,7 @@ jobs:
   GitHub-Actions-Test-on-Push-Tag:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "modified_ref=$(echo '${{ github.ref }}' | sed 's|/ref/tags/v||g')" >> $GITHUB_ENV
+      - run: echo "modified_ref=$(echo '${{ github.ref }}' | sed 's|/refs/tags/v||g')" >> $GITHUB_ENV
       - run: |
           echo "Some vars:"
           echo " - github.event_name: ${{ github.event_name }}"
