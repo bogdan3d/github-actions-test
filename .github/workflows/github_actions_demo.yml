@@ -8,14 +8,15 @@ on:
 jobs:
   GitHub-Actions-Test-on-Push-Tag:
     runs-on: ubuntu-latest
-    steps:        
+    steps:
+      - run: echo "modified_ref=$(echo '${{ github.ref }}' | sed 's|/ref/tags/v||g')" >> $GITHUB_ENV
       - run: |
           echo "Some vars:"
           echo " - github.event_name: ${{ github.event_name }}"
           echo " - runner.os: ${{ runner.os }}"
           echo " - github.ref: ${{ github.ref }}"
           echo " - github.repository: ${{ github.repository }}"
-          echo " - github.ref with replacement: ${{ github.ref/refs\/tags\/v/ }}"
+          echo " - github.ref with replacement: ${{ env.modified_ref }}"
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
@@ -51,6 +52,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./helloworldpythontest_${{ github.ref_name }}_amd64.deb
-          asset_name: helloworldpythontest_${{ github.ref_name }}_amd64.deb
+          asset_path: ./helloworldpythontest_${{ env.modified_ref }}_amd64.deb
+          asset_name: helloworldpythontest_${{ env.modified_ref }}_amd64.deb
           asset_content_type: application/zip
