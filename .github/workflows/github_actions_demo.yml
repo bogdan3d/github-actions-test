@@ -15,6 +15,7 @@ jobs:
           echo " - runner.os: ${{ runner.os }}"
           echo " - github.ref: ${{ github.ref }}"
           echo " - github.repository: ${{ github.repository }}"
+          echo " - github ref name with hash v: ${ GITHUB_REF_NAME#v }"
           echo " - github.event.release.tag_name: ${{ github.event.release.tag_name }}"
       - name: Check out repository code
         uses: actions/checkout@v4
